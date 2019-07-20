@@ -1,7 +1,7 @@
 import React from 'react'
 import { compose } from 'recompose'
 
-import { withFirebase, withProtectRoute } from '@components/_sharded/hoc'
+import { withFirebase, withProtectRoute } from '@components/hoc'
 
 class AboutPage extends React.PureComponent {
   render() {

@@ -23,7 +23,6 @@ script:
 
 before_deploy:
   - npm run build
-  - npm install --prefix ./functions
 deploy:
   skip_cleanup: true
   provider: firebase

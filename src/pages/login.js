@@ -8,9 +8,9 @@ import { Redirect } from 'react-router-dom'
 
 import { Action } from '@stores/actions'
 import { authSelectors } from '@stores/selectors'
-import { FieldInput } from '@components/_sharded/input'
+import { FieldInput } from '@components/input'
 import { LoginSchema } from '@helpers/validators'
-import { withFirebase } from '@components/_sharded/hoc'
+import { withFirebase } from '@components/hoc'
 
 class LoginPage extends React.PureComponent {
   render() {
