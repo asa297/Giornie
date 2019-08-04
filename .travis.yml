@@ -14,7 +14,7 @@ env:
   - REACT_APP_CLOUD_FUNCTION_BASE_URL = $REACT_APP_CLOUD_FUNCTION_BASE_URL
 
 before_script:
-  - yarn pre-install
+  - yarn pre-install-client
 
 script:
   - yarn client-test 
