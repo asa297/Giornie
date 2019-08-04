@@ -1,7 +1,7 @@
 FROM node:alpine as builder
 WORKDIR '/usr/app'
-COPY ./server/package.json .
+COPY package.json .
 RUN npm install
-COPY ./server .
+COPY . .
 EXPOSE 5000
 CMD ["npm", "run", "start"]
