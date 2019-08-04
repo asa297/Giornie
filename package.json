@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "pre-install": "yarn --cwd ./client run install",
+    "pre-install": "cd ./client && yarn",
     "dev" : "yarn --cwd ./client run start",
     "client-test" : "yarn --cwd ./client run test -- --coverage",
     "client-build" : "yarn --cwd ./client run build"
