@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "pre-install": "yarn --cwd ./client run install",
-    "dev" : "yarn --cwd ./client run start"
+    "dev" : "yarn --cwd ./client run start",
+    "client-test" : "yarn --cwd ./client run test -- --coverage",
+    "client-build" : "yarn --cwd ./client run build"
   }
 }

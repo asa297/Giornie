@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "8"
-cache: npm
+cache: yarn
 env:
   global:
   - REACT_APP_API_KEY = $REACT_APP_API_KEY
@@ -13,13 +13,13 @@ env:
   - REACT_APP_CLOUD_FUNCTION_BASE_URL = $REACT_APP_CLOUD_FUNCTION_BASE_URL
 
 before_script:
-  - npm install
+  - yarn pre-install
 
 script:
-  - npm test -- --coverage
+  - yarn client-test 
 
 before_deploy:
-  - npm run build
+  - yarn client-build
 deploy:
   skip_cleanup: true
   provider: firebase
