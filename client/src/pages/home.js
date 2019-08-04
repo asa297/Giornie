@@ -10,7 +10,7 @@ class HomePage extends React.PureComponent {
     return (
       <Container>
         HomePage
-        <Button type="primary" onClick={() => this.props.history.push('/login')}>
+        <Button type="primary" onClick={() => this.props.Login({ email: 'makejack4@gmail.com', password: '026936804' })}>
           Login
         </Button>
       </Container>

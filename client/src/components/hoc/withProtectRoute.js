@@ -1,9 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { auth } from '@myfirebase'
+import { firebase } from '@myfirebase'
 
 export default protectRoute => Component => props => {
-  const user = auth.currentUser
+  const user = firebase.auth().currentUser
 
   if (!user && protectRoute) {
     return <Redirect to="/login" />

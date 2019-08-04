@@ -1,5 +1,5 @@
 import React from 'react'
-import { auth } from '@myfirebase'
+import { firebase } from '@myfirebase'
 import FirebaseContext from './context'
 
 export default class FirebaseAuthProvider extends React.PureComponent {
@@ -10,7 +10,18 @@ export default class FirebaseAuthProvider extends React.PureComponent {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
+      // if (user) {
+      // const firestore = firebase.firestore()
+      // const userData = await firestore
+      //   .collection('users')
+      //   .doc(user.uid)
+      //   .get()
+      //   .then(doc => doc.data())
+      // user = { ...user, role: userData.role }
+      // }
+
+      // console.log(user)
       this.setState({
         authStatus: true,
         isUserSignedIn: !!user,
