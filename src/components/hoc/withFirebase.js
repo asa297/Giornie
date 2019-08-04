@@ -1,5 +1,5 @@
 import React from 'react'
-import { FirebaseContext } from '@components/auth'
+import { FirebaseContext } from '@components/firebase-provider'
 
 export default Component => props => (
   <FirebaseContext.Consumer>
