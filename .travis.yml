@@ -18,9 +18,6 @@ before_script:
 script:
   - npm test -- --coverage
 
-# after_success:
-#   - npm run build
-
 before_deploy:
   - npm run build
 deploy:
