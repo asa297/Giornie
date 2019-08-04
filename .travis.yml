@@ -24,6 +24,11 @@ script:
 
 before_deploy:
   - yarn client-build
+  - docker build -t asa297/giornie-server ./server
+    # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Take those images and push them to docker hub
+  - docker push asa297/giornie-server
 deploy:
   - provider: firebase
     skip_cleanup: true
@@ -35,7 +40,6 @@ deploy:
 
   - provider: elasticbeanstalk
     skip_cleanup: true
-    local_dir: server
     region: ap-southeast-1
     app: giornie-server
     env: GiornieServer-env
