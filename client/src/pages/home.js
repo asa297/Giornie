@@ -3,7 +3,7 @@ import { Button } from 'antd'
 import { compose } from 'recompose'
 // import styled from 'styled-components'
 
-// import { withFirebase } from '@components/hoc'
+import { withFirebase } from '@components/hoc'
 // import { Action } from '@stores/actions'
 // import { authSelectors } from '@stores/selectors'
 import { MainLayout } from '@components/layout/main-layout'
