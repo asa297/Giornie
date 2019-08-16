@@ -1,5 +1,10 @@
 import React from 'react'
+import axios from 'axios'
+
 import { firebase } from '@myfirebase'
+import { getAuthHeader } from '@helpers'
+import { LoadingIndicator } from '@components/_Shared/loading-indicator'
+
 import FirebaseContext from './context'
 
 export default class FirebaseAuthProvider extends React.PureComponent {
@@ -11,17 +16,12 @@ export default class FirebaseAuthProvider extends React.PureComponent {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(async user => {
-      // if (user) {
-      // const firestore = firebase.firestore()
-      // const userData = await firestore
-      //   .collection('users')
-      //   .doc(user.uid)
-      //   .get()
-      //   .then(doc => doc.data())
-      // user = { ...user, role: userData.role }
-      // }
+      if (user) {
+        const config = await getAuthHeader()
+        const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/user`, config)
+        user = { ...data }
+      }
 
-      // console.log(user)
       this.setState({
         authStatus: true,
         isUserSignedIn: !!user,
@@ -33,6 +33,11 @@ export default class FirebaseAuthProvider extends React.PureComponent {
   render() {
     const { children } = this.props
     const { authStatus, isUserSignedIn, user } = this.state
-    return <FirebaseContext.Provider value={{ isUserSignedIn, authStatus, user }}>{authStatus && children}</FirebaseContext.Provider>
+    return (
+      <FirebaseContext.Provider value={{ isUserSignedIn, authStatus, user }}>
+        {!authStatus && <LoadingIndicator />}
+        {authStatus && children}
+      </FirebaseContext.Provider>
+    )
   }
 }
