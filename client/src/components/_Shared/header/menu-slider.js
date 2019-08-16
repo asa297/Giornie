@@ -16,7 +16,7 @@ const MenuItem = ({ name, type, ...rest }) => {
 
 export const MenuSlider = ({ user, ...rest }) => {
   const MenuFunction = page => {
-    const { key } = page
+    // const { key } = page
     rest.onClose()
   }
   const renderMainMenu = () => mainMenu.map(menu => <MenuItem name={menu.name} key={menu.path} type={menu.type} />)
