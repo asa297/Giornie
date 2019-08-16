@@ -1,40 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Button } from 'antd'
+import { compose } from 'recompose'
 import styled from 'styled-components'
+
+import { withFirebase } from '@components/hoc'
 import { Action } from '@stores/actions'
 import { authSelectors } from '@stores/selectors'
+import { MainLayout } from '@components/layout/main-layout'
 
-class HomePage extends React.PureComponent {
-  render() {
-    return (
-      <Container>
-        HomePage
-        <Button type="primary" onClick={() => this.props.Login({ email: 'makejack4@gmail.com', password: '026936804' })}>
-          Login
-        </Button>
-      </Container>
-    )
-  }
+export const HomePage = props => {
+  console.log(props)
+  const { user } = props
+  return (
+    <MainLayout user={user}>
+      HomePage
+      <Button type="primary" onClick={() => this.props.Login({ email: 'makejack4@gmail.com', password: '026936804' })}>
+        Login
+      </Button>
+    </MainLayout>
+  )
 }
 
-const Container = styled.div`
-  width: 100%;
-`
-
-const mapStateToProps = state => {
-  return {
-    test: authSelectors.isLoadingSelector(state),
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    Login: value => dispatch(Action.loginAction(value)),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HomePage)
+export default compose(withFirebase)(HomePage)
