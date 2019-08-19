@@ -16,6 +16,8 @@ import { FirebaseAuthProvider } from '@components/firebase-provider'
 import { Router } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import { createBrowserHistory } from 'history'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '@helpers/theme'
 
 import 'antd/dist/antd.css'
 
@@ -32,11 +34,13 @@ sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
   <FirebaseAuthProvider>
-    <Provider store={store}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Router history={history}>
+          <App />
+        </Router>
+      </Provider>
+    </ThemeProvider>
   </FirebaseAuthProvider>,
   document.getElementById('root'),
 )
