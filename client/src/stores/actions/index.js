@@ -1,5 +1,2 @@
-import * as authAction from './authAction'
-
-export const Action = {
-  ...authAction,
-}
+export * from './authAction'
+export * from './commonAction'

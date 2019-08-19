@@ -1,19 +1,19 @@
 import { firebase } from '@myfirebase'
 import { put, takeLeading } from 'redux-saga/effects'
 import { actionTypes } from '@stores/types'
-import { push } from 'react-router-redux'
+import { setIsAuthLoading, setAuthError, changeLocation } from '@stores/actions'
 
 function* loginTask({ payload }) {
   try {
-    yield put({ type: actionTypes.AUTH_MODULE.IS_LOADING, payload: true })
+    yield put(setIsAuthLoading({ isLoading: true }))
     const { email, password } = payload
     yield firebase.auth().signInWithEmailAndPassword(email, password)
 
-    yield put(push(`/about`))
+    yield put(changeLocation({ path: '/about' }))
   } catch (e) {
-    yield put({ type: actionTypes.AUTH_MODULE.IS_ERROR_AUTHENTICATED, payload: true })
+    yield put(setAuthError({ isError: true, message: 'Auth Error' }))
   } finally {
-    yield put({ type: actionTypes.AUTH_MODULE.IS_LOADING, payload: false })
+    yield put(setIsAuthLoading({ isLoading: false }))
   }
 }
 

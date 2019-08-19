@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { reportMenu, mainMenu } from './menu-content'
 import { Icon, Drawer, Menu } from 'antd'
+import { useDispatch } from 'react-redux'
+
+import { reportMenu, mainMenu } from './menu-content'
+import { changeLocation } from '@stores/actions'
 
 const SubMenu = Menu.SubMenu
 
@@ -15,8 +18,11 @@ const MenuItem = ({ name, type, ...rest }) => {
 }
 
 export const MenuSlider = ({ user, ...rest }) => {
+  const dispatch = useDispatch()
+
   const MenuFunction = page => {
-    // const { key } = page
+    const { key } = page
+    dispatch(changeLocation({ path: key }))
     rest.onClose()
   }
   const renderMainMenu = () => mainMenu.map(menu => <MenuItem name={menu.name} key={menu.path} type={menu.type} />)

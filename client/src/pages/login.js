@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Formik, Field } from 'formik'
 import { Redirect } from 'react-router-dom'
 
-import { Action } from '@stores/actions'
+import { loginAction } from '@stores/actions'
 import { authSelectors } from '@stores/selectors'
 import { FieldInput } from '@components/input'
 import { LoginSchema } from '@helpers/validators'
@@ -84,7 +84,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    Login: value => dispatch(Action.loginAction(value)),
+    Login: value => dispatch(loginAction(value)),
   }
 }
 
